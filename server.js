@@ -2,12 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const path = require('path');
+const cors = require('cors'); // 🆕 YANGI
+
 const app = express();
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 
-// public fayllar uchun
+// CORS muammosini hal qiladi
+app.use(cors()); // 🆕 YANGI
+
+// JSON va static fayllar uchun
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
