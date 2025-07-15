@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const path = require('path');
 const cors = require('cors'); // 🆕 YANGI
+require('dotenv').config();
+
+
 
 const app = express();
 
-const BOT_TOKEN = process.env.BOT_TOKEN;
-const CHAT_ID = process.env.CHAT_ID;
+const BOT_TOKEN = '7587178192:AAGxmUnjNYGx0rvoLlGqH9sZ_l6O9AKElbI';
+const CHAT_ID = '7086429203';
 
 // CORS muammosini hal qiladi
 app.use(cors()); // 🆕 YANGI
