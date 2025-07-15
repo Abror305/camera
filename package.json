@@ -1,17 +1,16 @@
 {
-  "name": "camera-server",
+  "name": "camera-bot",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.6.0",
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^4.21.2",
-    "nodemon": "^3.1.10"
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "form-data": "^4.0.3"
   }
 }
