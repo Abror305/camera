@@ -6,11 +6,10 @@ const cors = require('cors'); // 🆕 YANGI
 require('dotenv').config();
 
 
-
 const app = express();
 
-const BOT_TOKEN = '7587178192:AAGxmUnjNYGx0rvoLlGqH9sZ_l6O9AKElbI';
-const CHAT_ID = '7086429203';
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
 
 // CORS muammosini hal qiladi
 app.use(cors()); // 🆕 YANGI
@@ -20,23 +19,23 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'client.html'));
+    res.sendFile(path.join(__dirname, 'public', 'client.html'));
 });
 
 app.post('/send-photo', async (req, res) => {
-  try {
-    const image = req.body.image;
-    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-      chat_id: CHAT_ID,
-      photo: image
-    });
-    res.sendStatus(200);
-  } catch (err) {
-    console.error('Xatolik:', err.message);
-    res.sendStatus(500);
-  }
+    try {
+        const image = req.body.image;
+        await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            chat_id: CHAT_ID,
+            photo: image
+        });
+        res.sendStatus(200);
+    } catch (err) {
+        console.error('Xatolik:', err.message);
+        res.sendStatus(500);
+    }
 });
 
 app.listen(3000, () => {
-  console.log('✅ Server ishga tushdi');
+    console.log('✅ Server ishga tushdi');
 });
